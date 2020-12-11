@@ -18,6 +18,9 @@ func main() {
 }
 
 func canCompleteCircuit(gas []int, cost []int) int {
+	if len(gas) == 0 { // edge case
+		return -1
+	}
 	startPts := []int{}
 
 	for i, n := range gas {
@@ -28,7 +31,7 @@ func canCompleteCircuit(gas []int, cost []int) int {
 			if (n-cost[i])+(gas[i+1]-cost[i+1]) < 0 {
 				continue
 			}
-		} else {
+		} else { // last index; loop back to index 0
 			if (n-cost[i])+(gas[0]-cost[0]) < 0 {
 				continue
 			}
